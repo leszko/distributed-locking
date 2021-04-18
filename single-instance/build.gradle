@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     implementation group: 'com.hazelcast', name: 'hazelcast-all', version: '4.2'
-    implementation group: 'org.redisson', name: 'redisson', version: '3.15.3'
+//    implementation group: 'org.redisson', name: 'redisson', version: '3.15.3'
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'

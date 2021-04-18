@@ -14,7 +14,7 @@ kubectl delete pod hazelcast
 
 ```
 helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
-helm install hazelcast --version 3.7.0 hazelcast/hazelcast
+helm install hazelcast hazelcast/hazelcast --version 3.7.0
 kubectl run application --image leszko/distributed-locking:single-instance
 
 kubectl delete pod application
@@ -36,3 +36,15 @@ kubectl delete pod application
 kubectl delete service redis-1 redis-2 redis-3
 kubectl delete pod redis-1 redis-2 redis-3
 ```
+
+# Consensus-Based Distributed Locking
+
+```
+helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
+helm install hazelcast hazelcast/hazelcast --version 3.7.0 --set hazelcast.yaml.hazelcast.cp-subsystem.cp-member-count=3
+kubectl run application --image leszko/distributed-locking:single-instance
+
+kubectl delete pod application
+helm uninstall hazelcast
+```
+
