@@ -7,11 +7,11 @@ import org.redisson.config.Config;
 
 public class RedLock {
     public static void main(String[] args) throws InterruptedException {
-        var redis1 = client("redis-1");
-        var redis2 = client("redis-2");
-        var redis3 = client("redis-3");
-
-        var lock = new RedissonRedLock(redis1.getLock("lock1"), redis2.getLock("lock2"), redis3.getLock("lock3"));
+        var lock = new RedissonRedLock(
+                client("redis-1").getLock("lock1"),
+                client("redis-2").getLock("lock2"),
+                client("redis-3").getLock("lock3")
+        );
 
         while (true) {
             lock.lock();

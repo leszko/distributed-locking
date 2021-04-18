@@ -26,10 +26,13 @@ helm uninstall hazelcast
 ```
 docker build -t leszko/distributed-locking:redlock -f Dockerfile.redlock .
 
-kubectl run redis-1 --image redis:6.2.1 --port 7181 --expose
-kubectl run redis-2 --image redis:6.2.1 --port 7181 --expose
-kubectl run redis-3 --image redis:6.2.1 --port 7181 --expose
+kubectl run redis-1 --image redis:6.2.1 --port 6379 --expose
+kubectl run redis-2 --image redis:6.2.1 --port 6379 --expose
+kubectl run redis-3 --image redis:6.2.1 --port 6379 --expose
 
 kubectl run application --image leszko/distributed-locking:redlock
 
+kubectl delete pod application
+kubectl delete service redis-1 redis-2 redis-3
+kubectl delete pod redis-1 redis-2 redis-3
 ```
