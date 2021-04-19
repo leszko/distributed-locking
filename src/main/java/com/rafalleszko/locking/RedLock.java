@@ -15,7 +15,7 @@ public class RedLock {
 
         while (true) {
             lock.lock();
-            writetoSharedResource();
+            writeToSharedResource();
             lock.unlock();
         }
     }
@@ -26,7 +26,7 @@ public class RedLock {
         return Redisson.create(config);
     }
 
-    private static void writetoSharedResource() throws InterruptedException {
+    private static void writeToSharedResource() throws InterruptedException {
         System.out.println("Writing to a shared resource...");
         Thread.sleep(1000);
         System.out.println("FINISHED");

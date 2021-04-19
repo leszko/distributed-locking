@@ -12,12 +12,12 @@ public class Fenced {
 
         while (true) {
             long token = lock.lockAndGetFence();
-            writetoSharedResource(token);
+            writeToSharedResource(token);
             lock.unlock();
         }
     }
 
-    private static void writetoSharedResource(long token) throws InterruptedException {
+    private static void writeToSharedResource(long token) throws InterruptedException {
         System.out.println("Writing to a shared resource with token: " + token);
         Thread.sleep(1000);
         System.out.println("FINISHED");
