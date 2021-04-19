@@ -4,7 +4,7 @@ This repository presents different approaches to using distributed locking in th
 
 ## Single-instance
 
-This approach presents useing a single instance of database / caching server as lock manager.
+This approach presents using a single instance of database / caching server as lock manager.
 
 You can build your own image with the following command. If you skip this step you'll use the image `leszko/distributed-locking:hazelcast`.
 
@@ -16,7 +16,7 @@ docker build -t <YOUR-USERNAME>/distributed-locking:hazelcast .
 Deploy Lock Manager and Application.
 ```
 kubectl run hazelcast --image hazelcast/hazelcast:4.2 --port 5701 --expose
-kubectl run application --image leszko/distributed-locking:single-instance
+kubectl run application --image leszko/distributed-locking:hazelcast
 
 kubectl delete pod application
 kubectl delete service hazelcast
@@ -85,7 +85,7 @@ Deploy Lock Manager and Application.
 ```
 helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
 helm install hazelcast hazelcast/hazelcast --version 3.7.0 --set hazelcast.yaml.hazelcast.cp-subsystem.cp-member-count=3
-kubectl run application --image leszko/distributed-locking:single-instance
+kubectl run application --image leszko/distributed-locking:hazelcast
 
 kubectl delete pod application
 helm uninstall hazelcast
