@@ -17,8 +17,9 @@ Deploy Lock Manager and Application.
 ```
 kubectl run hazelcast --image hazelcast/hazelcast:4.2 --port 5701 --expose
 kubectl run application --image leszko/distributed-locking:hazelcast
+kubectl run application-2 --image leszko/distributed-locking:hazelcast
 
-kubectl delete pod application
+kubectl delete pod application application-2
 kubectl delete service hazelcast
 kubectl delete pod hazelcast
 ```
@@ -39,8 +40,9 @@ Deploy Lock Manager and Application.
 helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
 helm install hazelcast hazelcast/hazelcast --version 3.7.0
 kubectl run application --image leszko/distributed-locking:hazelcast
+kubectl run application-2 --image leszko/distributed-locking:hazelcast
 
-kubectl delete pod application
+kubectl delete pod application application-2
 helm uninstall hazelcast
 ```
 
@@ -63,8 +65,9 @@ kubectl run redis-2 --image redis:6.2.1 --port 6379 --expose
 kubectl run redis-3 --image redis:6.2.1 --port 6379 --expose
 
 kubectl run application --image leszko/distributed-locking:redlock
+kubectl run application-2 --image leszko/distributed-locking:redlock
 
-kubectl delete pod application
+kubectl delete pod application application-2
 kubectl delete service redis-1 redis-2 redis-3
 kubectl delete pod redis-1 redis-2 redis-3
 ```
@@ -86,8 +89,9 @@ Deploy Lock Manager and Application.
 helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
 helm install hazelcast hazelcast/hazelcast --version 3.7.0 --set hazelcast.yaml.hazelcast.cp-subsystem.cp-member-count=3
 kubectl run application --image leszko/distributed-locking:hazelcast
+kubectl run application-2 --image leszko/distributed-locking:hazelcast
 
-kubectl delete pod application
+kubectl delete pod application application-2
 helm uninstall hazelcast
 ```
 
@@ -108,7 +112,8 @@ Deploy Lock Manager and Application.
 helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
 helm install hazelcast hazelcast/hazelcast --version 3.7.0 --set hazelcast.yaml.hazelcast.cp-subsystem.cp-member-count=3
 kubectl run application --image leszko/distributed-locking:fenced
+kubectl run application-2 --image leszko/distributed-locking:fenced
 
-kubectl delete pod application
+kubectl delete pod application application-2
 helm uninstall hazelcast
 ```

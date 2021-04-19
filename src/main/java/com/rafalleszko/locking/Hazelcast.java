@@ -18,8 +18,9 @@ public class Hazelcast {
     }
 
     private static void writetoSharedResource() throws InterruptedException {
-        System.out.println("Writing to a shared resource");
+        System.out.println("Writing to a shared resource...");
         Thread.sleep(1000);
+        System.out.println("FINISHED");
     }
 
 }
