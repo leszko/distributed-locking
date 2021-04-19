@@ -12,8 +12,7 @@ repositories {
 
 dependencies {
     implementation group: 'com.hazelcast', name: 'hazelcast-all', version: '4.2'
-//    implementation group: 'org.redisson', name: 'redisson', version: '3.15.3'
-
+    implementation group: 'org.redisson', name: 'redisson', version: '3.15.3'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
@@ -21,7 +20,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': project.hasProperty('mainClass') ? project.getProperty('mainClass') : 'com.rafalleszko.locking.Main'
+        attributes 'Main-Class': project.hasProperty('mainClass') ? project.getProperty('mainClass') : 'com.rafalleszko.locking.Hazelcast'
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
